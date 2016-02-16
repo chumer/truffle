@@ -33,21 +33,22 @@ import com.oracle.truffle.api.CompilerDirectives.CompilationFinal;
  *
  * <p>
  * For example it makes sense to register a performance counter on {@link #create(EventContext) } and
- * increment the counter in the {@link EventNode} implementation. The counter can be stored as a
- * {@link CompilationFinal compilation final}, so no peak performance overhead persists for looking
- * up the counter on the fast path.
+ * increment the counter in the {@link ExecutionEventNode} implementation. The counter can be stored
+ * as a {@link CompilationFinal compilation final}, so no peak performance overhead persists for
+ * looking up the counter on the fast path.
  * </p>
  */
-public interface EventNodeFactory {
+public interface ExecutionEventNodeFactory {
 
     /**
-     * Returns a new instance of {@link EventNode} for this particular source location. This method
-     * might be invoked multiple times for one particular source location {@link EventContext
-     * context}. The implementation must ensure that this is handled accordingly.
+     * Returns a new instance of {@link ExecutionEventNode} for this particular source location.
+     * This method might be invoked multiple times for one particular source location
+     * {@link EventContext context}. The implementation must ensure that this is handled
+     * accordingly.
      *
      * @param context the current context where this event node should get created.
      * @return a new event node instance
      */
-    EventNode create(EventContext context);
+    ExecutionEventNode create(EventContext context);
 
 }

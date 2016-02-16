@@ -30,21 +30,23 @@ import com.oracle.truffle.api.nodes.NodeCost;
 import com.oracle.truffle.api.nodes.NodeInfo;
 
 /**
- * An event node created by an {@link EventNodeFactory} for a specific locations of a guest language
- * program to listen to instrumentation events. In addition to {@link EventListener listeners} event
- * nodes allow to store state for a particular {@link EventContext program location}.
+ * An event node created by an {@link ExecutionEventNodeFactory} for a specific locations of a guest
+ * language program to listen to instrumentation events. In addition to
+ * {@link ExecutionEventListener listeners} event nodes allow to store state for a particular
+ * {@link EventContext program location}.
  */
 @NodeInfo(cost = NodeCost.NONE)
 @SuppressWarnings("unused")
-public abstract class EventNode extends Node {
+public abstract class ExecutionEventNode extends Node {
 
-    protected EventNode() {
+    protected ExecutionEventNode() {
     }
 
     /**
      * Invoked immediately before the {@link EventContext#getInstrumentedNode() instrumented node}
      * is executed. The order in which multiple event listeners are notified matches the order they
-     * are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener) attached}.
+     * are {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}
+     * .
      *
      * @param frame the current frame used in the instrumented node
      */
@@ -55,8 +57,8 @@ public abstract class EventNode extends Node {
     /**
      * Invoked immediatly after an {@link EventContext#getInstrumentedNode() instrumented node} is
      * successfully executed. The order in which multiple event listeners are notified matches the
-     * order they are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener)
-     * attached}.
+     * order they are
+     * {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}.
      *
      * @param frame the frame that was used for executing instrumented node
      */
@@ -67,8 +69,8 @@ public abstract class EventNode extends Node {
     /**
      * Invoked immediately after an {@link EventContext#getInstrumentedNode() instrumented node} did
      * not successfully execute. The order in which multiple event listeners are notified matches
-     * the order they are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener)
-     * attached}.
+     * the order they are
+     * {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}.
      *
      * @param frame the frame that was used for executing instrumented node
      */

@@ -29,12 +29,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.WeakHashMap;
 
 import com.oracle.truffle.api.CallTarget;
@@ -49,7 +49,6 @@ import com.oracle.truffle.api.nodes.NodeVisitor;
 import com.oracle.truffle.api.nodes.RootNode;
 import com.oracle.truffle.api.source.Source;
 import com.oracle.truffle.api.source.SourceSection;
-import java.util.Set;
 
 /**
  * Central coordinator class for the Truffle instrumentation framework. Allocated once per engine.
@@ -183,7 +182,7 @@ final class InstrumentationHandler {
         EventContext context = probeNodeImpl.getContext();
         SourceSection sourceSection = context.getInstrumentedSourceSection();
         if (TRACE) {
-            trace("Lazy update for %s, tags %s%n", sourceSection, Arrays.toString(probeNodeImpl.getContext().getInstrumentedSourceSection().getTags()));
+            trace("Lazy update for %s%n", sourceSection);
         }
         EventChainNode root = null;
         EventChainNode parent = null;
@@ -209,7 +208,7 @@ final class InstrumentationHandler {
         }
 
         if (TRACE) {
-            trace("Lazy updated for %s, tags %s%n", sourceSection, Arrays.toString(probeNodeImpl.getContext().getInstrumentedSourceSection().getTags()));
+            trace("Lazy updated for %s%n", sourceSection);
         }
         return root;
     }
@@ -315,11 +314,11 @@ final class InstrumentationHandler {
         }
     }
 
-    private <T extends EventNodeFactory> EventBinding<T> attachFactory(AbstractInstrumenter instrumenter, SourceSectionFilter filter, T factory) {
+    private <T extends ExecutionEventNodeFactory> EventBinding<T> attachFactory(AbstractInstrumenter instrumenter, SourceSectionFilter filter, T factory) {
         return addBinding(new EventBinding<>(instrumenter, filter, factory));
     }
 
-    private <T extends EventListener> EventBinding<T> attachListener(AbstractInstrumenter instrumenter, SourceSectionFilter filter, T listener) {
+    private <T extends ExecutionEventListener> EventBinding<T> attachListener(AbstractInstrumenter instrumenter, SourceSectionFilter filter, T listener) {
         return addBinding(new EventBinding<>(instrumenter, filter, listener));
     }
 
@@ -387,7 +386,7 @@ final class InstrumentationHandler {
         ProbeNode probeNode = parent.getProbeNode();
         if (TRACE) {
             SourceSection section = probeNode.getContext().getInstrumentedSourceSection();
-            trace("Invalidate wrapper for %s, section %s tags %s%n", node, section, Arrays.toString(section.getTags()));
+            trace("Invalidate wrapper for %s, section %s %n", node, section);
         }
         if (probeNode != null) {
             probeNode.invalidate();
@@ -431,7 +430,7 @@ final class InstrumentationHandler {
             if (sourceSection != null) {
                 if (isInstrumentedLeaf(node, binding, sourceSection) && isInstrumentableNode(node)) {
                     if (TRACE) {
-                        trace("Filter hit section:%s tags:%s%n", sourceSection, Arrays.toString(sourceSection.getTags()));
+                        trace("Filter hit section:%s%n", sourceSection);
                     }
                     visitInstrumented(node, sourceSection);
                 }
@@ -682,12 +681,12 @@ final class InstrumentationHandler {
         abstract boolean isInstrumentable(Node rootNode);
 
         @Override
-        public final <T extends EventNodeFactory> EventBinding<T> attachFactory(SourceSectionFilter filter, T factory) {
+        public final <T extends ExecutionEventNodeFactory> EventBinding<T> attachFactory(SourceSectionFilter filter, T factory) {
             return InstrumentationHandler.this.attachFactory(this, filter, factory);
         }
 
         @Override
-        public final <T extends EventListener> EventBinding<T> attachListener(SourceSectionFilter filter, T listener) {
+        public final <T extends ExecutionEventListener> EventBinding<T> attachListener(SourceSectionFilter filter, T listener) {
             return InstrumentationHandler.this.attachListener(this, filter, listener);
         }
 

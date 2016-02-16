@@ -170,11 +170,11 @@ public final class ProbeNode extends Node {
     ProbeNode.EventChainNode createEventChainCallback(EventBinding<?> binding) {
         ProbeNode.EventChainNode next;
         Object element = binding.getElement();
-        if (element instanceof EventListener) {
-            next = new EventFilterChainNode(binding, (EventListener) element);
+        if (element instanceof ExecutionEventListener) {
+            next = new EventFilterChainNode(binding, (ExecutionEventListener) element);
         } else {
-            assert element instanceof EventNodeFactory;
-            EventNode eventNode = createEventNode(binding, element);
+            assert element instanceof ExecutionEventNodeFactory;
+            ExecutionEventNode eventNode = createEventNode(binding, element);
             if (eventNode == null) {
                 // error occured creating the event node
                 return null;
@@ -184,10 +184,10 @@ public final class ProbeNode extends Node {
         return next;
     }
 
-    private EventNode createEventNode(EventBinding<?> binding, Object element) {
-        EventNode eventNode;
+    private ExecutionEventNode createEventNode(EventBinding<?> binding, Object element) {
+        ExecutionEventNode eventNode;
         try {
-            eventNode = ((EventNodeFactory) element).create(context);
+            eventNode = ((ExecutionEventNodeFactory) element).create(context);
             if (eventNode.getParent() != null) {
                 throw new IllegalStateException(String.format("Returned EventNode %s was already adopted by another AST.", eventNode));
             }
@@ -341,9 +341,9 @@ public final class ProbeNode extends Node {
 
     private static class EventFilterChainNode extends ProbeNode.EventChainNode {
 
-        private final EventListener listener;
+        private final ExecutionEventListener listener;
 
-        EventFilterChainNode(EventBinding<?> binding, EventListener listener) {
+        EventFilterChainNode(EventBinding<?> binding, ExecutionEventListener listener) {
             super(binding);
             this.listener = listener;
         }
@@ -371,9 +371,9 @@ public final class ProbeNode extends Node {
 
     private static class EventProviderChainNode extends ProbeNode.EventChainNode {
 
-        @Child private EventNode eventNode;
+        @Child private ExecutionEventNode eventNode;
 
-        EventProviderChainNode(EventBinding<?> binding, EventNode eventNode) {
+        EventProviderChainNode(EventBinding<?> binding, ExecutionEventNode eventNode) {
             super(binding);
             this.eventNode = eventNode;
         }

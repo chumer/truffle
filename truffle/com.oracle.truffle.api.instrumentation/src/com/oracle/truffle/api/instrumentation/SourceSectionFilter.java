@@ -355,13 +355,10 @@ public final class SourceSectionFilter {
             @SuppressFBWarnings("ES_COMPARING_STRINGS_WITH_EQ")
             boolean isIncluded(SourceSection sourceSection) {
                 String[] filterTags = this.tags;
-                String[] sectionTags = sourceSection.getTags();
                 for (int i = 0; i < filterTags.length; i++) {
                     String tag = filterTags[i];
-                    for (int j = 0; j < sectionTags.length; j++) {
-                        if (tag == sectionTags[j]) {
-                            return true;
-                        }
+                    if (sourceSection.hasTag(tag)) {
+                        return true;
                     }
                 }
                 return false;
@@ -395,13 +392,10 @@ public final class SourceSectionFilter {
             @SuppressFBWarnings("ES_COMPARING_STRINGS_WITH_EQ")
             boolean isIncluded(SourceSection sourceSection) {
                 String[] filterTags = this.tags;
-                String[] sectionTags = sourceSection.getTags();
                 for (int i = 0; i < filterTags.length; i++) {
                     String tag = filterTags[i];
-                    for (int j = 0; j < sectionTags.length; j++) {
-                        if (tag == sectionTags[j]) {
-                            return false;
-                        }
+                    if (sourceSection.hasTag(tag)) {
+                        return false;
                     }
                 }
                 return true;

@@ -25,12 +25,12 @@
 package com.oracle.truffle.api.instrumentation;
 
 /**
- * Provides the capabilities to attach {@link EventNodeFactory} and {@link EventListener} instances
- * for a set of source locations specified by a {@link SourceSectionFilter}. The result of an
- * attachment is a {@link EventBinding binding}.
+ * Provides the capabilities to attach {@link ExecutionEventNodeFactory} and
+ * {@link ExecutionEventListener} instances for a set of source locations specified by a
+ * {@link SourceSectionFilter}. The result of an attachment is a {@link EventBinding binding}.
  *
- * @see #attachFactory(SourceSectionFilter, EventNodeFactory)
- * @see #attachListener(SourceSectionFilter, EventListener)
+ * @see #attachFactory(SourceSectionFilter, ExecutionEventNodeFactory)
+ * @see #attachListener(SourceSectionFilter, ExecutionEventListener)
  */
 public abstract class Instrumenter {
 
@@ -38,15 +38,15 @@ public abstract class Instrumenter {
     }
 
     /**
-     * Starts event notification for a given {@link EventNodeFactory factory} and returns a
+     * Starts event notification for a given {@link ExecutionEventNodeFactory factory} and returns a
      * {@link EventBinding binding} which represents a handle to dispose the notification.
      */
-    public abstract <T extends EventNodeFactory> EventBinding<T> attachFactory(SourceSectionFilter filter, T factory);
+    public abstract <T extends ExecutionEventNodeFactory> EventBinding<T> attachFactory(SourceSectionFilter filter, T factory);
 
     /**
-     * Starts event notification for a given {@link EventListener listeenr} and returns a
+     * Starts event notification for a given {@link ExecutionEventListener listeenr} and returns a
      * {@link EventBinding binding} which represents a handle to dispose the notification.
      */
-    public abstract <T extends EventListener> EventBinding<T> attachListener(SourceSectionFilter filter, T listener);
+    public abstract <T extends ExecutionEventListener> EventBinding<T> attachListener(SourceSectionFilter filter, T listener);
 
 }
