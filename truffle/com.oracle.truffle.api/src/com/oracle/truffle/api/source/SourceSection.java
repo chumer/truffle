@@ -107,7 +107,7 @@ public final class SourceSection {
      * @param tag the tag to search for
      * @return <code>true</code> if tag was found else <code>false</code>
      */
-    @SuppressFBWarnings("ES_COMPARING_STRINGS_WITH_EQ")
+    @SuppressFBWarnings("ES_COMPARING_PARAMETER_STRING_WITH_EQ")
     public boolean hasTag(String tag) {
         assert tag.intern() == tag;
         for (int i = 0; i < tags.length; i++) {

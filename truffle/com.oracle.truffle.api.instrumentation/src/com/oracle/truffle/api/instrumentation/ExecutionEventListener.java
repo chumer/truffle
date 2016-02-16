@@ -35,7 +35,8 @@ public interface ExecutionEventListener {
     /**
      * Invoked immediately before the {@link EventContext#getInstrumentedNode() instrumented node}
      * is executed. The order in which multiple event listeners are notified matches the order they
-     * are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener) attached}.
+     * are {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}
+     * .
      *
      * @param context indicating the current location in the guest language AST
      * @param frame the frame that was used for executing instrumented node
@@ -45,8 +46,8 @@ public interface ExecutionEventListener {
     /**
      * Invoked immediatly after an {@link EventContext#getInstrumentedNode() instrumented node} is
      * successfully executed. The order in which multiple event listeners are notified matches the
-     * order they are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener)
-     * attached}.
+     * order they are
+     * {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}.
      *
      * @param context indicating the current location in the guest language AST
      * @param frame the frame that was used for executing instrumented node
@@ -56,8 +57,8 @@ public interface ExecutionEventListener {
     /**
      * Invoked immediately after an {@link EventContext#getInstrumentedNode() instrumented node} did
      * not successfully execute. The order in which multiple event listeners are notified matches
-     * the order they are {@link Instrumenter#attachListener(SourceSectionFilter, EventListener)
-     * attached}.
+     * the order they are
+     * {@link Instrumenter#attachListener(SourceSectionFilter, ExecutionEventListener) attached}.
      *
      * @param context indicating the current location in the guest language AST
      * @param frame the frame that was used for executing instrumented node
