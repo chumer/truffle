@@ -154,6 +154,7 @@ public final class ProbeNode extends Node {
             if (currentChain.binding.getElement() == factory) {
                 return ((EventProviderChainNode) currentChain).eventNode;
             }
+            currentChain = currentChain.next;
         }
         return null;
     }
