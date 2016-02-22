@@ -94,12 +94,14 @@ suite = {
       "sourceDirs" : ["src"],
       "dependencies" : [
         "com.oracle.truffle.dsl.processor",
-        "com.oracle.truffle.api.vm",
+        "com.oracle.truffle.api",
+        "com.oracle.truffle.api.dsl",
         "mx:JUNIT",
+        "mx:JMH"
       ],
       "checkstyle" : "com.oracle.truffle.dsl.processor",
       "javaCompliance" : "1.7",
-      "annotationProcessors" : ["TRUFFLE_DSL_PROCESSOR"],
+      "annotationProcessors" : ["TRUFFLE_DSL_PROCESSOR", "mx:JMH"],
       "workingSets" : "API,Truffle,Codegen,Test",
       "jacoco" : "exclude",
     },

@@ -51,6 +51,13 @@ public @interface DSLOptions {
     /** Not yet implemented. */
     boolean useDisjunctiveMethodGuardOptimization() default true;
 
+    DSLGenerator defaultGenerator() default DSLGenerator.DEFAULT;
+
+    public enum DSLGenerator {
+        DEFAULT,
+        FLAT
+    }
+
     enum ImplicitCastOptimization {
 
         /** Perform no informed optimization for implicit casts. */
@@ -128,8 +135,8 @@ public @interface DSLOptions {
         DECLARED,
 
         /**
-         * Never generate an optimized fallback specialization. Please be aware that triggering a @Fallback
-         * case without optimization will also invalidate your compiled code.
+         * Never generate an optimized fallback specialization. Please be aware that triggering
+         * a @Fallback case without optimization will also invalidate your compiled code.
          */
         NEVER;
     }

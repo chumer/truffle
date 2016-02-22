@@ -130,6 +130,17 @@ public class PolyglotEngine {
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
+
+        try {
+            Class.forName(Instrumenter.class.getName(), true, Instrumenter.class.getClassLoader());
+        } catch (ClassNotFoundException ex) {
+            throw new IllegalStateException(ex);
+        }
+        try {
+            Class.forName("com.oracle.truffle.api.debug.Debugger", true, PolyglotEngine.class.getClassLoader());
+        } catch (ClassNotFoundException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 
     /**
