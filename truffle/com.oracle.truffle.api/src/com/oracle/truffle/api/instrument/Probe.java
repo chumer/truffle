@@ -133,8 +133,8 @@ public final class Probe {
      * <li>The "probing" of an AST Node is implemented by insertion of a
      * {@link ProbeNode.WrapperNode} into the AST (as new parent of the Node being probed), together
      * with an associated {@link ProbeNode} that routes execution events at the probed Node to all
-     * the {@linkplain ProbeInstrument Instruments} attached to the Probe's
-     * <em>instrument chain</em>.</li>
+     * the {@linkplain ProbeInstrument Instruments} attached to the Probe's <em>instrument
+     * chain</em>.</li>
      *
      * <li>When Truffle clones an AST, any attached WrapperNodes and ProbeNodes are cloned as well,
      * together with their attached instrument chains. Each Probe instance intercepts cloning events
@@ -202,8 +202,8 @@ public final class Probe {
     }
 
     /**
-     * In which user-sensible categories has the <em>Probed node</em> been tagged (
-     * <em>empty set</em> if none).
+     * In which user-sensible categories has the <em>Probed node</em> been tagged ( <em>empty
+     * set</em> if none).
      *
      * @since 0.8 or earlier
      */

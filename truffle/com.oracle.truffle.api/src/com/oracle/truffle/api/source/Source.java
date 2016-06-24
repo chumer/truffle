@@ -63,8 +63,8 @@ import java.net.URISyntaxException;
  *
  * {@link SourceSnippets#fromURL}
  *
- * Each URL source is represented as a canonical object, indexed by the URL. Contents are
- * <em>read eagerly</em> once the {@link Builder#build()} method is called.
+ * Each URL source is represented as a canonical object, indexed by the URL. Contents are <em>read
+ * eagerly</em> once the {@link Builder#build()} method is called.
  *
  * <h3>Source from a literal text</h3>
  *

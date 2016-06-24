@@ -34,9 +34,9 @@
  * <p>
  * <h4>Truffle Instrumentation: access to execution events for Debuggers and other tools.</h4>
  * <p>
- * This framework permits client tools, either builtin or third-party, to observe with
- * <em>very low overhead</em> the execution of a Truffle Language program at the level of
- * <em>AST execution events</em>:
+ * This framework permits client tools, either builtin or third-party, to observe with <em>very low
+ * overhead</em> the execution of a Truffle Language program at the level of <em>AST execution
+ * events</em>:
  * <ul>
  * <li>a Truffle Node is about to be executed, or</li>
  * <li>a Truffle Node execution has just completed.</li>

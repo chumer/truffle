@@ -22,38 +22,65 @@
  * or visit www.oracle.com if you need additional information or have any
  * questions.
  */
-package com.oracle.truffle.api.debug.impl;
+package com.oracle.truffle.api.debug;
 
-import com.oracle.truffle.api.debug.Debugger;
 import com.oracle.truffle.api.instrumentation.Instrumenter;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument.Registration;
-import com.oracle.truffle.api.vm.PolyglotEngine;
 
-@Registration(id = DebuggerInstrument.ID)
+/**
+ * Instrument for registered for the debugger. Do not use directly.
+ *
+ * @since 0.16
+ */
+@Registration(name = "Debugger", id = DebuggerInstrument.ID)
 public final class DebuggerInstrument extends TruffleInstrument {
-    public static final String ID = "debugger";
 
-    private Debugger debugger;
-    private Instrumenter instrumenter;
+    static final String ID = "debugger";
 
+    private DebuggerAccess debuggerAccess;
+
+    /**
+     * @since 0.16
+     */
+    public DebuggerInstrument() {
+    }
+
+    /**
+     * @since 0.16
+     */
     @Override
     protected void onCreate(Env env) {
-        this.instrumenter = env.getInstrumenter();
-        env.registerService(this);
+        this.debuggerAccess = new DebuggerAccess(env);
+        env.registerService(debuggerAccess);
     }
 
-    public Debugger getDebugger(PolyglotEngine engine, Factory factory) {
-        if (debugger == null && factory != null) {
-            debugger = factory.create(engine, instrumenter);
-            if (debugger == null) {
-                throw new NullPointerException();
-            }
+    static class DebuggerAccess {
+
+        private final Env env;
+
+        private Debugger debugger;
+
+        DebuggerAccess(Env env) {
+            this.env = env;
         }
-        return debugger;
+
+        Env getEnv() {
+            return env;
+        }
+
+        Instrumenter getInstrumenter() {
+            return env.getInstrumenter();
+        }
+
+        void setDebugger(Debugger debugger) {
+            this.debugger = debugger;
+        }
+
+        Debugger getDebugger() {
+            return debugger;
+        }
+
     }
 
-    public interface Factory {
-        Debugger create(PolyglotEngine engine, Instrumenter instrumenter);
-    }
 }
