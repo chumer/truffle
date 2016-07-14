@@ -36,9 +36,8 @@ import com.oracle.truffle.api.TruffleLanguage;
  *
  * @param <Event> type of event to observe and handle
  * @since 0.9
- * @deprecated use {@link com.oracle.truffle.api.debug.Debugger
- *             Debugger}.find(engine).startSession(new SuspendedCallback(){...}).suspendNext()
- *             instead
+ * @deprecated use {@link com.oracle.truffle.api.debug.Debugger Debugger}
+ *             .find(engine).startSession(new SuspendedCallback(){...}).suspendNext() instead
  */
 @Deprecated
 public abstract class EventConsumer<Event> {

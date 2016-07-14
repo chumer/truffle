@@ -168,9 +168,8 @@ public final class Debugger {
      * @return <code>true</code> when pause was requested on the current execution,
      *         <code>false</code> when there is no running execution to pause.
      * @since 0.14
-     * @deprecated use debugger.{@link #startSession(SuspendedCallback)
-     *             startSession(callback)}.{@link DebuggerSession#suspendNextExecution()
-     *             suspendNextExecution()} instead
+     * @deprecated use debugger.{@link #startSession(SuspendedCallback) startSession(callback)}.
+     *             {@link DebuggerSession#suspendNextExecution() suspendNextExecution()} instead
      */
     @Deprecated
     public boolean pause() {
@@ -226,9 +225,9 @@ public final class Debugger {
      * @return a new breakpoint, initially enabled
      * @throws IOException if the breakpoint can not be set.
      * @since 0.14
-     * @deprecated use {@link Breakpoint}.{@link Breakpoint#newBuilder(Source)
-     *             newBuilder(line)}.lineIs(line).oneShot().build() instead. You can install a
-     *             breakpoint with {@link DebuggerSession#install(Breakpoint)}.
+     * @deprecated use {@link Breakpoint}.{@link Breakpoint#newBuilder(Source) newBuilder(line)}
+     *             .lineIs(line).oneShot().build() instead. You can install a breakpoint with
+     *             {@link DebuggerSession#install(Breakpoint)}.
      */
     @TruffleBoundary
     @Deprecated

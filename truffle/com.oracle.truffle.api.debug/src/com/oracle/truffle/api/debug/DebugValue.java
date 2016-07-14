@@ -33,8 +33,8 @@ import com.oracle.truffle.api.nodes.RootNode;
  * Represents a value accessed using the debugger API. Please note that values can become invalid
  * depending on the context in which they are used. For example stack values will only remain valid
  * as long as the current stack element is active. Heap values on the other hand remain valid. If a
- * value becomes invalid then setting or getting a value will throw an
- * {@link IllegalStateException}.
+ * value becomes invalid then setting or getting a value will throw an {@link IllegalStateException}
+ * .
  *
  * @since 0.16
  */
