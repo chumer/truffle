@@ -197,7 +197,6 @@ public class BreakpointTest extends AbstractDebugTest {
             Breakpoint breakpoint1 = session.install(Breakpoint.newBuilder(source).lineIs(4).build());
             Breakpoint breakpoint2 = session.install(Breakpoint.newBuilder(source).lineIs(4).build());
             Breakpoint breakpoint3 = session.install(Breakpoint.newBuilder(source).lineIs(4).build());
-            // session.suspendNextExecution();
             startEval(source);
             for (int i = 0; i < 3; i++) {
                 checkState(expectSuspended(), 4, true, "STATEMENT").prepareContinue();
