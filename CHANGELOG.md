@@ -34,8 +34,8 @@ This changelog summarizes major changes between Truffle versions relevant to lan
   * Deprecated SuspendedEvent#getStack() and replaced it with SuspendedEvent#getStackFrames()
   * Deprecated SuspendedEvent#toString(Object, FrameInstance) and replaced it with DebugValue.as(String.class).
 * Added SourceSectionFilter.Builder#sourceIs(SourcePredicate) to filter for source sections with a custom source predicate.
-* Added Instrumenter#isEngineRoot(RootNode) to find out where the context of the current evaluation ends when looking up the guest language stack trace with TruffleRuntime#iterateFrames().
-* Added Instrumenter#toString(Node, Object) to allow string conversions for objects given a Node to identify the guest language.
+* Added TruffleInstrument.Env#isEngineRoot(RootNode) to find out where the context of the current evaluation ends when looking up the guest language stack trace with TruffleRuntime#iterateFrames().
+* Added TruffleInstrument.Env#toString(Node, Object) to allow string conversions for objects given a Node to identify the guest language.
 * Added EventContext#lookupExecutionEventNode(EventBinding) to lookup other execution event nodes using the binding at a source location.
 * Deprecated PolyglotEngine.Builder#onEvent(EventConsumer) and class EventConsumer, debugger events are now dispatched using the DebuggerSession.
 
