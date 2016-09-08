@@ -6,6 +6,7 @@ This changelog summarizes major changes between Truffle versions relevant to lan
 
 * Added [Instrumenter](http://lafo.ssw.uni-linz.ac.at/javadoc/truffle/latest/com/oracle/truffle/api/instrumentation/Instrumenter.html).querySourceSections(SourceSectionFilter) to get a filtered list of loaded instances.
 * Added [SourceSectionFilter](http://lafo.ssw.uni-linz.ac.at/javadoc/truffle/latest/com/oracle/truffle/api/instrumentation/SourceSectionFilter.html).ANY, which always matches.
+* Relaxed the restrictions for calling methods on [SuspendedEvent](http://lafo.ssw.uni-linz.ac.at/javadoc/truffle/latest/com/oracle/truffle/api/debug/SuspendedEvent.html) and [DebugStackFrame](http://lafo.ssw.uni-linz.ac.at/javadoc/truffle/latest/com/oracle/truffle/api/debug/DebugStackFrame.html) from other threads than the execution thread. Please see the javadoc of the individual methods for details.
 
 ## Version 0.17
 1-Sep-2016
